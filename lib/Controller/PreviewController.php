@@ -70,6 +70,7 @@ class PreviewController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @PublicPage
 	 * Render default index template
 	 *
 	 * @return DataResponse|FileDisplayResponse
@@ -77,10 +78,17 @@ class PreviewController extends Controller {
 	public function index(
 		int $fileId = -1,
 		int $x = 32,
-		int $y = 32
+		int $y = 32,
+		string $token = null
 	) {
 		if ($fileId === -1 || $x === 0 || $y === 0) {
 			return new DataResponse([], Http::STATUS_BAD_REQUEST);
+		}
+
+		$nodes = [];
+
+		if ($this->userFolder !== null) {
+			$nodes = $this->userFolder->getById($fileId);
 		}
 
 		$user = $this->userSession->getUser();
@@ -119,6 +127,11 @@ class PreviewController extends Controller {
 			}
 		}
 
+		if (\count($nodes) === 0 && $token !== null) {
+			$publicAlbums = $this->albumMapper->getAlbumsForCollaboratorIdAndFileId($token, AlbumMapper::TYPE_LINK, $fileId);
+			$nodes = $this->getFileIdForAlbums($fileId, $publicAlbums);
+		}
+
 		if (\count($nodes) === 0) {
 			return new DataResponse([], Http::STATUS_NOT_FOUND);
 		}
@@ -127,7 +140,6 @@ class PreviewController extends Controller {
 
 		return $this->fetchPreview($node, $x, $y);
 	}
-
 
 	protected function getFileIdForAlbums($fileId, $albums) {
 		foreach ($albums as $album) {

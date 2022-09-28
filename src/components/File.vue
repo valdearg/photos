@@ -207,7 +207,6 @@ export default {
 			} else {
 				return generateUrl(`/apps/photos/api/v1/preview/${this.file.fileid}?x=${size}&y=${size}`)
 			}
-
 		},
 
 		releaseSemaphore() {
