@@ -29,6 +29,7 @@ use OCA\DAV\Events\SabrePluginAuthInitEvent;
 use OCA\Photos\Listener\SabrePluginAuthInitListener;
 use OCA\DAV\Connector\Sabre\Principal;
 use OCA\Photos\Listener\CacheEntryRemovedListener;
+use OCA\Photos\Listener\LocationTagNodeEventListener;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
@@ -66,7 +67,9 @@ class Application extends App implements IBootstrap {
 		/** Register $principalBackend for the DAV collection */
 		$context->registerServiceAlias('principalBackend', Principal::class);
 		$context->registerEventListener(CacheEntryRemovedEvent::class, CacheEntryRemovedListener::class);
+		$context->registerEventListener(CacheEntryUpdatedEvent::class, LocationTagNodeEventListener::class);
 		$context->registerEventListener(SabrePluginAuthInitEvent::class, SabrePluginAuthInitListener::class);
+		require_once __DIR__ . '/../../vendor/autoload.php';
 	}
 
 	public function boot(IBootContext $context): void {

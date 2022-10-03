@@ -4,8 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35d14b088efbd1d2f344adcab31683b3",
-    "packages": [],
+    "content-hash": "807a478aabd3b0507dfa0c5bfea979f7",
+    "packages": [
+        {
+            "name": "hexogen/kdtree",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hexogen/kdtree.git",
+                "reference": "5d75517670f7ecf149688757f8540c2648bd5230"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hexogen/kdtree/zipball/5d75517670f7ecf149688757f8540c2648bd5230",
+                "reference": "5d75517670f7ecf149688757f8540c2648bd5230",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1"
+            },
+            "require-dev": {
+                "league/csv": "^8.0",
+                "mockery/mockery": "dev-master",
+                "phpunit/phpunit": "^7.0",
+                "squizlabs/php_codesniffer": "^2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hexogen\\KDTree\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Volodymyr Basarab",
+                    "email": "volodymyrbas@gmail.com",
+                    "homepage": "https://github.com/hexogen",
+                    "role": "Developer"
+                }
+            ],
+            "description": "file system KDTree index",
+            "homepage": "https://github.com/hexogen/kdtree",
+            "keywords": [
+                "algorithms",
+                "data structures",
+                "hexogen",
+                "kdtree",
+                "search"
+            ],
+            "support": {
+                "issues": "https://github.com/hexogen/kdtree/issues",
+                "source": "https://github.com/hexogen/kdtree/tree/master"
+            },
+            "time": "2018-12-23T19:57:09+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "amphp/amp",
